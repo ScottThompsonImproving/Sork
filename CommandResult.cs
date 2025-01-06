@@ -1,3 +1,4 @@
+namespace Sork;
 public class CommandResult
 {
     public bool RequestExit { get; set; }
