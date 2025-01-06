@@ -1,15 +1,19 @@
 namespace Sork.Commands;
-public class WhistleCommand : ICommand
+public class WhistleCommand : BaseCommand
 {
     private readonly UserInputOutput io;
     public WhistleCommand(UserInputOutput io)
     {
         this.io = io;
     }
-    public bool Handles(string userInput) => userInput == "whistle";
-    public CommandResult Execute()
+    public override bool Handles(string userInput)
     {
-        io.WriteMessageLine("You sound like a boiling tea kettle!");
+        return GetCommandFromInput(userInput) == "whistle";
+    }
+    public override CommandResult Execute()
+    {
+        io.WriteNoun("You");
+        io.WriteMessageLine(" sound like a boiling tea kettle!");
         return new CommandResult { RequestExit = false, IsHandled = true };
     }
 }

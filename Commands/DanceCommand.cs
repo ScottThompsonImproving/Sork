@@ -1,15 +1,22 @@
 namespace Sork.Commands;
-public class DanceCommand : ICommand
+public class DanceCommand : BaseCommand
 {
     private readonly UserInputOutput io;
+
     public DanceCommand(UserInputOutput io)
     {
         this.io = io;
     }
-    public bool Handles(string userInput) => userInput == "dance";
-    public CommandResult Execute()
+
+    public override bool Handles(string userInput)
     {
-        io.WriteMessageLine("You spin around in circles!");
+        return GetCommandFromInput(userInput) == "dance";
+    }
+
+    public override CommandResult Execute()
+    {
+        io.WriteNoun("You");
+        io.WriteMessageLine(" spin around in circles!");
         return new CommandResult { RequestExit = false, IsHandled = true };
     }
 }
