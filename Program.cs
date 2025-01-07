@@ -2,6 +2,7 @@
 using Sork.World;
 
 namespace Sork;
+
 public class Program
 {
     public static void Main(string[] args)
@@ -34,6 +35,7 @@ public class Program
                     if (result.RequestExit) { break; }
                 }
             }
+
             if (!handled) { io.WriteMessageLine("Unkown command"); }
             if (result.RequestExit) { break; }
         } while (true);

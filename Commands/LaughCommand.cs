@@ -1,4 +1,7 @@
+using Sork.World;
+
 namespace Sork.Commands;
+
 public class LaughCommand : BaseCommand
 {
     private readonly UserInputOutput io;

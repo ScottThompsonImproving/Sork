@@ -1,4 +1,7 @@
+using Sork.World;
+
 namespace Sork.Commands;
+
 public class DanceCommand : BaseCommand
 {
     private readonly UserInputOutput io;

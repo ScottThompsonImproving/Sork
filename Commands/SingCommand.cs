@@ -1,4 +1,7 @@
+using Sork.World;
+
 namespace Sork.Commands;
+
 public class SingCommand : BaseCommand
 {
     private readonly UserInputOutput io;
