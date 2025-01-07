@@ -26,7 +26,7 @@ public class Program
                 if (command.Handles(input))
                 {
                     handled = true;
-                    result = command.Execute();
+                    result = command.Execute(input, gameState);
                     if (result.RequestExit) { break; }
                 }
             }

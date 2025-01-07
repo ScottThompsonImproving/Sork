@@ -13,7 +13,7 @@ public class ExitCommand : BaseCommand
         return GetCommandFromInput(userInput) == "exit";
     }
 
-    public override CommandResult Execute()
+    public override CommandResult Execute(string userInput, GameState gameState)
     {
         io.WriteMessageLine("Goodbye!");
         return new CommandResult { RequestExit = true, IsHandled = true };

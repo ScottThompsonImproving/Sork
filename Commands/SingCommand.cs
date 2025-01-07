@@ -13,7 +13,7 @@ public class SingCommand : BaseCommand
         return GetCommandFromInput(userInput) == "sing";
     }
 
-    public override CommandResult Execute()
+    public override CommandResult Execute(string userInput, GameState gameState)
     {
         io.WriteNoun("You");
         io.WriteMessageLine(" wail like a banshee!");
