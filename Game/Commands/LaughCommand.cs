@@ -4,9 +4,9 @@ namespace Sork.Commands;
 
 public class LaughCommand : BaseCommand
 {
-    private readonly UserInputOutput io;
+    private readonly IUserInputOutput io;
 
-    public LaughCommand(UserInputOutput io)
+    public LaughCommand(IUserInputOutput io)
     {
         this.io = io;
     }

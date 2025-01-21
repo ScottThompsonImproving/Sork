@@ -4,9 +4,9 @@ namespace Sork.Commands;
 
 public class ExitCommand : BaseCommand
 {
-    private readonly UserInputOutput io;
+    private readonly IUserInputOutput io;
 
-    public ExitCommand(UserInputOutput io)
+    public ExitCommand(IUserInputOutput io)
     {
         this.io = io;
     }

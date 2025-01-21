@@ -4,9 +4,9 @@ namespace Sork.Commands;
 
 public class MoveCommand : BaseCommand
 {
-    private readonly UserInputOutput io;
+    private readonly IUserInputOutput io;
 
-    public MoveCommand(UserInputOutput io)
+    public MoveCommand(IUserInputOutput io)
     {
         this.io = io;
     }

@@ -6,7 +6,7 @@ public class GameState
 
     public required Room RootRoom { get; set; }
 
-    public static GameState Create(UserInputOutput io)
+    public static GameState Create(IUserInputOutput io)
     {
         var tavern = new Room { Name = "Tavern", Description = "A cozy tavern with a friendly atmosphere." };
         var dungeon = new Room { Name = "Dungeon", Description = "A dark and dank dungeon." };
