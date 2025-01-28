@@ -17,7 +17,7 @@ public class DanceCommand : BaseCommand
         return GetCommandFromInput(userInput) == "dance" && (paramsLength == 0 || paramsLength == 1);
     }
 
-    public override CommandResult Execute(string userInput, GameState gameState)
+    public override CommandResult Execute(string userInput, Player player)
     {
         var parameters = GetParametersFromInput(userInput);
 

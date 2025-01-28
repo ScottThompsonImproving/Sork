@@ -2,10 +2,10 @@ namespace Sork.World;
 
 public class GameState
 {
-    public required Player Player { get; set; }
+    public List<Player> Players { get; set; } = [];
     public required Room RootRoom { get; set; }
 
-    public static GameState Create(IUserInputOutput io)
+    public static GameState Create()
     {
         var tavern = new Room { Name = "Tavern", Description = "A warm, friendly establishment serving food, beverage, and entertainment." };
         var dungeon = new Room { Name = "Dungeon", Description = "A dark, dank crypt that is filled with silence and dread." };
@@ -19,10 +19,6 @@ public class GameState
         tavern.Exits.Add("down", dungeon);
         dungeon.Exits.Add("up", tavern);
 
-        io.WritePrompt("What is your name? ");
-        string name = io.ReadInput();
-
-        var player = new Player { Name = name, Location = tavern };
-        return new GameState { Player = player, RootRoom = tavern };
+        return new GameState { RootRoom = tavern };
     }
 }

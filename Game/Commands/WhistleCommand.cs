@@ -14,7 +14,7 @@ public class WhistleCommand : BaseCommand
     {
         return GetCommandFromInput(userInput) == "whistle";
     }
-    public override CommandResult Execute(string userInput, GameState gameState)
+    public override CommandResult Execute(string userInput, Player player)
     {
         io.WriteNoun("You");
         io.WriteMessageLine(" sound like a boiling tea kettle!");

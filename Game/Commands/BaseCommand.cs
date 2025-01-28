@@ -5,7 +5,7 @@ namespace Sork.Commands;
 public abstract class BaseCommand : ICommand
 {
     public abstract bool Handles(string userInput);
-    public abstract CommandResult Execute(string userInput, GameState gameState);
+    public abstract CommandResult Execute(string userInput, Player player);
 
     public string GetCommandFromInput(string userInput)
     {

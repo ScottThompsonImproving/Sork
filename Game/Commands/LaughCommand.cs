@@ -16,7 +16,7 @@ public class LaughCommand : BaseCommand
         return GetCommandFromInput(userInput) == "lol";
     }
 
-    public override CommandResult Execute(string userInput, GameState gameState)
+    public override CommandResult Execute(string userInput, Player player)
     {
         io.WriteNoun("You");
         io.WriteMessageLine(" laugh out loud!");

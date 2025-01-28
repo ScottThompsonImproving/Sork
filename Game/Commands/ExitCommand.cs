@@ -16,7 +16,7 @@ public class ExitCommand : BaseCommand
         return GetCommandFromInput(userInput) == "exit";
     }
 
-    public override CommandResult Execute(string userInput, GameState gameState)
+    public override CommandResult Execute(string userInput, Player player)
     {
         io.WriteMessageLine("Fare thee well, chummer!");
         return new CommandResult { RequestExit = true, IsHandled = true };
