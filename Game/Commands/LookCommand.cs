@@ -5,11 +5,9 @@ namespace Sork.Commands;
 public class LookCommand : BaseCommand
 {
     private readonly IUserInputOutput io;
-    private readonly GameState gameState;
-    public LookCommand(IUserInputOutput io, GameState gameState)
+    public LookCommand(IUserInputOutput io)
     {
         this.io = io;
-        this.gameState = gameState;
     }
 
     public override bool Handles(string userInput)
