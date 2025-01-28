@@ -1,15 +1,24 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sork.Commands;
 using Sork.World;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Sork;
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
+    {
+        var networkGame = new NetworkGame();
+        networkGame.ClientConnected += (sender, e) => RunGame(networkGame, e.Client);
+        await networkGame.StartListening();
+    }
+
+    public static void RunGame(NetworkGame networkGame, TcpClient client)
     {
         var services = new ServiceCollection();
-        services.AddSingleton<IUserInputOutput, UserInputOutput>();
-        services.AddSingleton<GameState>(sp => GameState.Create(sp.GetRequiredService<UserInputOutput>()));
+        services.AddSingleton<IUserInputOutput, NetworkInputOutput>(sp => new NetworkInputOutput(client));
+        services.AddSingleton<GameState>(sp => GameState.Create(sp.GetRequiredService<IUserInputOutput>()));
         var commandTypes = typeof(ICommand).Assembly.GetTypes()
             .Where(t => typeof(ICommand).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract);
 
@@ -32,11 +41,11 @@ public class Program
             var handled = false;
             foreach (var command in commands)
             {
-                if (command.Handles(input))
+                if (command.Handles(input)) 
                 {
                     handled = true;
                     result = command.Execute(input, gameState);
-                    if (result.RequestExit) { break; }
+                    if (result.RequestExit) { break; } 
                 }
             }
             if (!handled) { io.WriteMessageLine("Unknown command"); }
