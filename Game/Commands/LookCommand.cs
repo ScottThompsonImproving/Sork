@@ -21,13 +21,13 @@ public class LookCommand : BaseCommand
         io.WriteMessageLine("");
         io.WriteMessageLine(gameState.Player.Location.Description);
         io.WriteMessageLine("");
-        io.WriteMessageLine("Exits:");
+        io.WriteNoun("Exits:");
         foreach (var exit in gameState.Player.Location.Exits)
         {
             io.WriteMessageLine($"{exit.Key} - {exit.Value.Description}");
         }
         io.WriteMessageLine("");
-        io.WriteMessageLine("Inventory:");
+        io.WriteNoun("Inventory:");
         foreach (var item in gameState.Player.Location.Inventory)
         {
             io.WriteMessageLine($"{item.Name} - {item.Description}");

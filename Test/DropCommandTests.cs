@@ -33,7 +33,7 @@ public class DropCommandTests
         // Assert
         Assert.IsTrue(result.IsHandled);
         Assert.IsFalse(result.RequestExit);
-        Assert.AreEqual("Please specify one item to drop.", io.Outputs.Last());
+        Assert.AreEqual("What are you trying to drop again?", io.Outputs.Last());
     }
 
     [TestMethod]
@@ -50,7 +50,7 @@ public class DropCommandTests
         // Assert
         Assert.IsTrue(result.IsHandled);
         Assert.IsFalse(result.RequestExit);
-        Assert.AreEqual("You don't have a nonexistent.", io.Outputs.Last());
+        Assert.AreEqual("You have to have to be holding a nonexistent to drop it.", io.Outputs.Last());
     }
 
     [TestMethod]
@@ -70,7 +70,7 @@ public class DropCommandTests
         // Assert
         Assert.IsTrue(result.IsHandled);
         Assert.IsFalse(result.RequestExit);
-        Assert.AreEqual("You dropped the Sword.", io.Outputs.Last());
+        Assert.AreEqual("The Sword falls from your hands.", io.Outputs.Last());
         Assert.IsFalse(gameState.Player.Inventory.Any(i => i.Name == "Sword"));
         Assert.IsTrue(gameState.Player.Location.Inventory.Any(i => i.Name == "Sword"));
     }

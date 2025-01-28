@@ -18,7 +18,7 @@ public sealed class ExitCommandTests
         var result = command.Execute("exit", gameState);
 
         // Assert
-        Assert.AreEqual("Goodbye!", io.Outputs[0]);
+        Assert.AreEqual("Fare thee well, chummer!", io.Outputs[0]);
         Assert.IsTrue(result.RequestExit);
         Assert.IsTrue(result.IsHandled);
     }
