@@ -1,7 +1,7 @@
 namespace Sork.Commands;
 using Sork.World;
 
-public sealed class TakeCommand : BaseCommand
+public class TakeCommand : BaseCommand
 {
     private readonly IUserInputOutput io;
     public TakeCommand(IUserInputOutput io)
@@ -19,10 +19,20 @@ public sealed class TakeCommand : BaseCommand
         var parameters = GetParametersFromInput(userInput);
         if (parameters.Length == 0)
         {
-            io.WriteMessageLine("What do you want to take?");
-            return new CommandResult() { IsHandled = false, RequestExit = false };
+            io.WriteMessageLine("You must specify an item to take.");
+            return new CommandResult() { IsHandled = false, RequestExit = false};
         }
 
-        return new CommandResult() { IsHandled = true, RequestExit = false };
+        var item = gameState.Player.Location.Inventory.FirstOrDefault(item => item.Name.ToLower() == parameters[0].ToLower());
+        if (item == null)
+        {
+            io.WriteMessageLine("You don't see that item here.");
+            return new CommandResult() { IsHandled = false, RequestExit = false};
+        }
+
+        gameState.Player.Inventory.Add(item);
+        gameState.Player.Location.Inventory.Remove(item);
+
+        return new CommandResult() { IsHandled = true, RequestExit = false};
     }
 }
