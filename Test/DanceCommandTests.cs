@@ -1,7 +1,7 @@
 using Sork.World;
 using Sork.Commands;
 
-namespace Sork.Tests;
+namespace Sork.Test;
 
 [TestClass]
 public class DanceCommandTests
