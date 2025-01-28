@@ -1,7 +1,7 @@
 using Sork.Commands;
 using Sork.World;
 
-namespace Sork.Tests;
+namespace Sork.Test;
 
 [TestClass]
 public sealed class SingCommandTests
@@ -12,10 +12,11 @@ public sealed class SingCommandTests
         // Arrange
         var io = new TestInputOutput();
         var command = new SingCommand(io);
-        var gameState = GameState.Create(io);
+        var gameState = GameState.Create();
+        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom };
 
         // Act
-        command.Execute("sing", gameState);
+        command.Execute("sing", player);
 
         // Assert
         Assert.AreEqual("You", io.Outputs[0]);

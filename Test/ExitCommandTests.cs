@@ -1,7 +1,7 @@
 using Sork.Commands;
 using Sork.World;
 
-namespace Sork.Tests;
+namespace Sork.Test;
 
 [TestClass]
 public sealed class ExitCommandTests
@@ -12,10 +12,11 @@ public sealed class ExitCommandTests
         // Arrange
         var io = new TestInputOutput();
         var command = new ExitCommand(io);
-        var gameState = GameState.Create(io);
+        var gameState = GameState.Create();
+        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom };
 
         // Act
-        var result = command.Execute("exit", gameState);
+        var result = command.Execute("exit", player);
 
         // Assert
         Assert.AreEqual("Fare thee well, chummer!", io.Outputs[0]);
