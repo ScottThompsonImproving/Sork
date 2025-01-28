@@ -20,19 +20,37 @@ public class LookCommand : BaseCommand
         io.WriteNoun(gameState.Player.Location.Name);
         io.WriteMessageLine("");
         io.WriteMessageLine(gameState.Player.Location.Description);
-        io.WriteMessageLine("");
-        io.WriteNoun("Exits:");
-        foreach (var exit in gameState.Player.Location.Exits)
+        if (player.Location.Exits.Count > 0)
         {
-            io.WriteMessageLine($"{exit.Key} - {exit.Value.Description}");
+            io.WriteMessageLine("");
+            io.WriteNoun("Exits");
+            io.WriteMessageLine("");
+            foreach (var exit in player.Location.Exits)
+            {
+                io.WriteMessageLine($"{exit.Key} - {exit.Value.Description}");
+            }
         }
-        io.WriteMessageLine("");
-        io.WriteNoun("Inventory:");
-        foreach (var item in gameState.Player.Location.Inventory)
+        else
         {
-            io.WriteMessageLine($"{item.Name} - {item.Description}");
+            io.WriteMessageLine("");
+            io.WriteMessageLine("You might be trapped because you cannot see a way out.");
         }
 
+        if (player.Location.Inventory.Count > 0)
+        {
+            io.WriteMessageLine("");
+            io.WriteNoun("Inventory");
+            io.WriteMessageLine("");
+            foreach (var item in player.Location.Inventory)
+            {
+                io.WriteMessageLine($"{item.Name} - {item.Description}");
+            }
+        }
+        else
+        {
+            io.WriteMessageLine("");
+            io.WriteMessageLine("There is nothing else of interest here.");
+        }
 
         return new CommandResult { RequestExit = false, IsHandled = true };
     }

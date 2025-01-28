@@ -39,10 +39,10 @@ public sealed class LookCommandTests
         Assert.AreEqual("", io.Outputs[1]);
         Assert.AreEqual("A warm, friendly establishment serving food, beverage, and entertainment.", io.Outputs[2]);
         Assert.AreEqual("", io.Outputs[3]);
-        Assert.AreEqual("Exits:", io.Outputs[4]);
+        Assert.AreEqual("Exits", io.Outputs[4]);
         Assert.AreEqual("down - A dark, dank crypt that is filled with silence and dread.", io.Outputs[5]);
         Assert.AreEqual("", io.Outputs[6]);
-        Assert.AreEqual("Inventory:", io.Outputs[7]);
+        Assert.AreEqual("Inventory", io.Outputs[7]);
         Assert.IsTrue(io.Outputs.Skip(7).Any(o => o == "Sword - A double-edged blade that would cleave flesh like a knife through butter."));
     }
 }
