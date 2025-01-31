@@ -13,7 +13,7 @@ public sealed class SingCommandTests
         var io = new TestInputOutput();
         var command = new SingCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom };
+        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
 
         // Act
         command.Execute("sing", player);
@@ -27,7 +27,7 @@ public sealed class SingCommandTests
     public void Handles_ShouldReturnTrue_WhenCapitalizedInputIsProvided()
     {
         // Arrange
-        var command = new SingCommand(new UserInputOutput());
+        var command = new SingCommand(new TestInputOutput());
 
         // Act
         var result = command.Handles("SING");
@@ -40,7 +40,7 @@ public sealed class SingCommandTests
     public void Handles_ShouldReturnTrue_WhenLowercaseInputIsProvided()
     {
         // Arrange
-        var command = new SingCommand(new UserInputOutput());
+        var command = new SingCommand(new TestInputOutput());
 
         // Act
         var result = command.Handles("sing");

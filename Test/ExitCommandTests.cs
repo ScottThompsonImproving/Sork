@@ -13,7 +13,7 @@ public sealed class ExitCommandTests
         var io = new TestInputOutput();
         var command = new ExitCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom };
+        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("exit", player);
@@ -28,7 +28,7 @@ public sealed class ExitCommandTests
     public void Handles_ShouldReturnTrue_WhenCapitalizedInputIsProvided()
     {
         // Arrange
-        var command = new ExitCommand(new UserInputOutput());
+        var command = new ExitCommand(new TestInputOutput());
 
         // Act
         var result = command.Handles("EXIT");
@@ -41,7 +41,7 @@ public sealed class ExitCommandTests
     public void Handles_ShouldReturnTrue_WhenLowercaseInputIsProvided()
     {
         // Arrange
-        var command = new ExitCommand(new UserInputOutput());
+        var command = new ExitCommand(new TestInputOutput());
 
         // Act
         var result = command.Handles("exit");

@@ -20,6 +20,8 @@ public class SingCommand : BaseCommand
     {
         io.WriteNoun("You");
         io.WriteMessageLine(" wail like a banshee!");
+        io.SpeakNoun(player.Name, player.Location);
+        io.SpeakMessageLine(" wails like a banshee!", player.Location);
         return new CommandResult { RequestExit = false, IsHandled = true };
     }
 }

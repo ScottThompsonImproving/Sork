@@ -10,7 +10,7 @@ public sealed class LookCommandTests
     public void Handle_ShouldReturnTrue_WhenInputIsCapitalized()
     {
         // Arrange
-        var command = new LookCommand(new UserInputOutput());
+        var command = new LookCommand(new TestInputOutput());
 
         // Act
         var result = command.Handles("LOOK");
@@ -26,7 +26,7 @@ public sealed class LookCommandTests
         var io = new TestInputOutput();
         var command = new LookCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom };
+        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("LOOK", player);
@@ -35,7 +35,7 @@ public sealed class LookCommandTests
         var tavernInventoryCount = player.Location.Inventory.Count;
         Assert.IsTrue(result.IsHandled);
         Assert.IsFalse(result.RequestExit);
-        Assert.AreEqual(10 + tavernInventoryCount, io.Outputs.Count);
+        Assert.AreEqual(14 + tavernInventoryCount, io.Outputs.Count);
         Assert.AreEqual("Tavern", io.Outputs[0]);
         Assert.AreEqual("", io.Outputs[1]);
         Assert.AreEqual("A warm, friendly establishment serving food, beverage, and entertainment.", io.Outputs[2]);
@@ -46,6 +46,11 @@ public sealed class LookCommandTests
         Assert.AreEqual("", io.Outputs[7]);
         Assert.AreEqual("Inventory", io.Outputs[8]);
         Assert.AreEqual("", io.Outputs[9]);
-        Assert.IsTrue(io.Outputs.Skip(9).Any(o => o == "Sword - A double-edged blade that would cleave flesh like a knife through butter."));
+        Assert.IsTrue(io.Outputs.Skip(9).Any(o => o == "Mug - An empty piece of pottery with a handle that could hold enough liquid to quench any thirst."));
+        Assert.IsTrue(io.Outputs.Skip(10).Any(o => o == "Sword - A double-edged blade that would cleave flesh like a knife through butter."));
+        Assert.AreEqual("", io.Outputs[12]);
+        Assert.AreEqual("Players", io.Outputs[13]);
+        Assert.AreEqual("", io.Outputs[14]);
+        Assert.IsTrue(io.Outputs.Skip(14).Any(o => o == "Tester the Great is here."));
     }
 }

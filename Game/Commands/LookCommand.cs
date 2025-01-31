@@ -50,7 +50,23 @@ public class LookCommand : BaseCommand
         else
         {
             io.WriteMessageLine("");
-            io.WriteMessageLine("There is nothing else of interest here.");
+            io.WriteMessageLine("There is nothing of interest here.");
+        }
+
+        if (player.Location.Players.Count > 0)
+        {
+            io.WriteMessageLine("");
+            io.WriteNoun("Players");
+            io.WriteMessageLine("");
+            foreach (var p in player.Location.Players)
+            {
+                io.WriteMessageLine($"{p.Name} is here.");
+            }
+        }
+        else
+        {
+            io.WriteMessageLine("");
+            io.WriteMessageLine("You are alone, and suddenly feel very uncomfortable.");
         }
 
         return new CommandResult { RequestExit = false, IsHandled = true };

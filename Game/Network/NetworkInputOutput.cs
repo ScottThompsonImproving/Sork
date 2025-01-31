@@ -1,5 +1,6 @@
 using System.Net.Sockets;
 using System.IO;
+using Sork.World;
 
 namespace Sork.Network;
 
@@ -50,5 +51,35 @@ public class NetworkInputOutput : IUserInputOutput
         // Read a single character
         int charRead = reader.Read();
         return charRead >= 0 ? ((char)charRead).ToString() : "";
+    }
+
+    public void SpeakMessage(string message, Room room)
+    {
+        foreach (var player in room.Players)
+        {
+            if (player.Io == this)
+                continue;
+            player.Io.WriteMessage($"{player.Name} says: {message}");
+        }
+    }
+
+    public void SpeakNoun(string noun, Room room)
+    {
+        foreach (var player in room.Players)
+        {
+            if (player.Io == this)
+                continue;
+            player.Io.WriteNoun(noun);
+        }
+    }
+
+    public void SpeakMessageLine(string message, Room room)
+    {
+        foreach (var player in room.Players)
+        {
+            if (player.Io == this)
+                continue;
+            player.Io.WriteMessageLine($"{player.Name} says: {message}");
+        }
     }
 }
