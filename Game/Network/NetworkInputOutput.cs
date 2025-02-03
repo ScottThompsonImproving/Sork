@@ -58,7 +58,7 @@ public class NetworkInputOutput : IUserInputOutput
         {
             if (player.Io == this)
                 continue;
-            player.Io.WriteMessage($"{player.Name} says: {message}");
+            player.Io.WriteMessage(message);
         }
     }
 
@@ -78,7 +78,7 @@ public class NetworkInputOutput : IUserInputOutput
         {
             if (player.Io == this)
                 continue;
-            player.Io.WriteMessageLine($"{player.Name} says: {message}");
+            player.Io.WriteMessageLine(message);
         }
     }
 }
