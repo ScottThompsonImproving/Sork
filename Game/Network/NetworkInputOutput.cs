@@ -52,6 +52,17 @@ public class NetworkInputOutput : IUserInputOutput
         return charRead >= 0 ? ((char)charRead).ToString() : "";
     }
 
+    public void SpeakPrompt(string prompt, Room room)
+    {
+        foreach (var player in room.Players)
+        {
+            if (player.Io == this)
+                continue;
+            // player.Io.WritePrompt($"\u001b[32m{prompt}\u001b[0m"); // Green text ANSI escape code;
+            player.Io.WritePrompt(prompt);
+        }
+    }
+
     public void SpeakMessage(string message, Room room)
     {
         foreach (var player in room.Players)

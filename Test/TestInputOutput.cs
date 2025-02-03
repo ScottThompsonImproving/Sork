@@ -61,4 +61,13 @@ public class TestInputOutput : IUserInputOutput
     public void WritePrompt(string prompt)
     {
     }
+
+    public void SpeakPrompt(string prompt, Room room)
+    {
+        if (!SpeakOutputs.ContainsKey(room))
+        {
+            SpeakOutputs[room] = [];
+        }
+        SpeakOutputs[room].Add(prompt);
+    }
 }

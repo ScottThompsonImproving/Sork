@@ -25,6 +25,9 @@ public class DanceCommand : BaseCommand
         {
             io.WriteNoun("You");
             io.WriteMessageLine(" spin around in circles!");
+
+            io.SpeakMessageLine("", player.Location);
+            io.SpeakPrompt(" > ", player.Location);
         }
         else
         {
@@ -32,6 +35,9 @@ public class DanceCommand : BaseCommand
             io.WriteMessage(" spin around in circles with ");
             io.WriteNoun(parameters[0]);
             io.WriteMessageLine("!");
+
+            io.SpeakMessageLine("", player.Location);
+            io.SpeakPrompt(" > ", player.Location);
         }
         return new CommandResult { RequestExit = false, IsHandled = true };
     }
