@@ -48,7 +48,6 @@ public class NetworkInputOutput : IUserInputOutput
 
     public string ReadKey()
     {
-        // Read a single character
         int charRead = reader.Read();
         return charRead >= 0 ? ((char)charRead).ToString() : "";
     }
