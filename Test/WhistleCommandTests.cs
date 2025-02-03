@@ -13,7 +13,7 @@ public sealed class WhistleCommandTests
         var io = new TestInputOutput();
         var command = new WhistleCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         command.Execute("whistle", player);

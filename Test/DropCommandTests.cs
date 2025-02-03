@@ -26,7 +26,7 @@ public class DropCommandTests
         var io = new TestInputOutput();
         var command = new DropCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("drop", player);
@@ -44,7 +44,7 @@ public class DropCommandTests
         var io = new TestInputOutput();
         var command = new DropCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("drop nonexistent", player);
@@ -62,7 +62,7 @@ public class DropCommandTests
         var io = new TestInputOutput();
         var command = new DropCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
         var sword = player.Location.Inventory.First(i => i.Name == "Sword");
         player.Location.Inventory.Remove(sword);
         player.Inventory.Add(sword);

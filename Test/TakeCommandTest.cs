@@ -26,7 +26,7 @@ public sealed class TakeCommandTests
         var io = new TestInputOutput();
         var command = new TakeCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("TAKE sword", player);
@@ -45,7 +45,7 @@ public sealed class TakeCommandTests
         var io = new TestInputOutput();
         var command = new TakeCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("TAKE candle", player);
@@ -65,7 +65,7 @@ public sealed class TakeCommandTests
         var io = new TestInputOutput();
         var command = new TakeCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("TAKE", player);

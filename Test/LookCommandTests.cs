@@ -26,7 +26,7 @@ public sealed class LookCommandTests
         var io = new TestInputOutput();
         var command = new LookCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("LOOK", player);
@@ -51,6 +51,6 @@ public sealed class LookCommandTests
         Assert.AreEqual("", io.Outputs[12]);
         Assert.AreEqual("Players", io.Outputs[13]);
         Assert.AreEqual("", io.Outputs[14]);
-        Assert.IsTrue(io.Outputs.Skip(14).Any(o => o == "Tester the Great is here."));
+        Assert.IsTrue(io.Outputs.Skip(14).Any(o => o == "TesterTheGreat is here."));
     }
 }

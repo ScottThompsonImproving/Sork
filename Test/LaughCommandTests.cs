@@ -26,7 +26,7 @@ public sealed class LaughCommandTests
         var io = new TestInputOutput();
         var command = new LaughCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         command.Execute("LOL", player);
@@ -43,7 +43,7 @@ public sealed class LaughCommandTests
         var io = new TestInputOutput();
         var command = new LaughCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Handles("lol");

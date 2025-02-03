@@ -13,7 +13,7 @@ public sealed class ExitCommandTests
         var io = new TestInputOutput();
         var command = new ExitCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         var result = command.Execute("exit", player);

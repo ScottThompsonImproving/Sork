@@ -13,7 +13,7 @@ public class DanceCommandTests
         var io = new TestInputOutput();
         var command = new DanceCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "Tester the Great", Location = gameState.RootRoom, Io = io };
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
         command.Execute("dance", player);
