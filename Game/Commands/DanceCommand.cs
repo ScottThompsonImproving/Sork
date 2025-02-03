@@ -26,12 +26,42 @@ public class DanceCommand : BaseCommand
             io.WriteNoun("You");
             io.WriteMessageLine(" spin around in circles!");
         }
-        else
+        else if (player.Location.Players.Any(p => p.Name.ToLower() == parameters[0].ToLower()
+            && p.Io == io))
+        {
+            io.WriteNoun("You");
+            io.WriteMessageLine(" spin around in circles with your invisible clone!");
+
+            io.SpeakMessageLine("", player.Location);
+            io.SpeakNoun(player.Name, player.Location);
+            io.SpeakMessageLine(" spins around in circles with their invisible clone!", player.Location);
+            io.SpeakPrompt(" > ", player.Location);
+        }
+        else if (player.Location.Players.Any(p => p.Name.ToLower() == parameters[0].ToLower()))
         {
             io.WriteNoun("You");
             io.WriteMessage(" spin around in circles with ");
             io.WriteNoun(parameters[0]);
             io.WriteMessageLine("!");
+
+            io.SpeakMessageLine("", player.Location);
+            io.SpeakNoun(player.Name, player.Location);
+            io.SpeakMessageLine(" spins around in circles with you!", player.Location);
+            io.SpeakPrompt(" > ", player.Location);
+        }
+        else
+        {
+            io.WriteNoun("You");
+            io.WriteMessage(" spin around in circles with your invisible friend ");
+            io.WriteNoun(parameters[0]);
+            io.WriteMessageLine("!");
+
+            io.SpeakMessageLine("", player.Location);
+            io.SpeakNoun(player.Name, player.Location);
+            io.SpeakMessage(" spins around in circles with their invisible friend ", player.Location);
+            io.SpeakNoun(parameters[0], player.Location);
+            io.SpeakMessageLine("!", player.Location);
+            io.SpeakPrompt(" > ", player.Location);
         }
         return new CommandResult { RequestExit = false, IsHandled = true };
     }
