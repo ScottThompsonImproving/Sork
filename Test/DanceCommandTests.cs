@@ -16,7 +16,7 @@ public class DanceCommandTests
         var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        command.Execute("dance", player);
+        command.Execute("dance", tester);
 
         // Assert
         Assert.AreEqual("You", io.Outputs[0]);
