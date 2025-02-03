@@ -20,7 +20,11 @@ public sealed class WhistleCommandTests
 
         // Assert
         Assert.AreEqual("You", io.Outputs[0]);
-        Assert.AreEqual(" sound like a boiling tea kettle!", io.Outputs.Last());
+        Assert.AreEqual(" sound like a boiling tea kettle!", io.Outputs[1]);
+
+        Assert.AreEqual("", io.SpeakOutputs[player.Location][0]);
+        Assert.AreEqual(player.Name, io.SpeakOutputs[player.Location][1]);
+        Assert.AreEqual(" sounds like a boiling tea kettle!", io.SpeakOutputs[player.Location][2]);
     }
 
     [TestMethod]
