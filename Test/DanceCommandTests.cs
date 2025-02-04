@@ -57,10 +57,13 @@ public class DanceCommandTests
     public void Handles_ShouldReturnTrue_WhenCapitalizedInputIsProvided()
     {
         // Arrange
-        var command = new DanceCommand(new TestInputOutput());
+        var io = new TestInputOutput();
+        var command = new DanceCommand(io);
+        var gameState = GameState.Create();
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Handles("DANCE");
+        var result = command.Handles("DANCE", tester);
 
         // Assert
         Assert.IsTrue(result);
@@ -70,10 +73,13 @@ public class DanceCommandTests
     public void Handles_ShouldReturnTrue_WhenLowercaseInputIsProvided()
     {
         // Arrange
-        var command = new DanceCommand(new TestInputOutput());
+        var io = new TestInputOutput();
+        var command = new DanceCommand(io);
+        var gameState = GameState.Create();
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Handles("dance");
+        var result = command.Handles("dance", tester);
 
         // Assert
         Assert.IsTrue(result);

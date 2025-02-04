@@ -10,10 +10,13 @@ public sealed class TakeCommandTests
     public void Handle_ShouldReturnTrue_WhenInputIsCapitalized()
     {
         // Arrange
-        var command = new TakeCommand(new TestInputOutput());
+        var io = new TestInputOutput();
+        var command = new TakeCommand(io);
+        var gameState = GameState.Create();
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Handles("TAKE sword");
+        var result = command.Handles("TAKE sword", tester);
 
         // Assert
         Assert.IsTrue(result);
@@ -26,16 +29,16 @@ public sealed class TakeCommandTests
         var io = new TestInputOutput();
         var command = new TakeCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Execute("TAKE sword", player);
+        var result = command.Execute("TAKE sword", tester);
 
         // Assert
         Assert.IsTrue(result.IsHandled);
         Assert.IsFalse(result.RequestExit);
-        Assert.AreEqual(1, player.Inventory.Count);
-        Assert.AreEqual("Sword", player.Inventory[0].Name);
+        Assert.AreEqual(1, tester.Inventory.Count);
+        Assert.AreEqual("Sword", tester.Inventory[0].Name);
     }
 
     [TestMethod]
@@ -45,15 +48,15 @@ public sealed class TakeCommandTests
         var io = new TestInputOutput();
         var command = new TakeCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Execute("TAKE candle", player);
+        var result = command.Execute("TAKE candle", tester);
 
         // Assert
         Assert.IsFalse(result.IsHandled);
         Assert.IsFalse(result.RequestExit);
-        Assert.AreEqual(0, player.Inventory.Count);
+        Assert.AreEqual(0, tester.Inventory.Count);
         Assert.AreEqual(1, io.Outputs.Count);
         Assert.AreEqual("You don't see that item here.", io.Outputs[0]);
     }
@@ -65,10 +68,10 @@ public sealed class TakeCommandTests
         var io = new TestInputOutput();
         var command = new TakeCommand(io);
         var gameState = GameState.Create();
-        var player = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Execute("TAKE", player);
+        var result = command.Execute("TAKE", tester);
 
         // Assert
         Assert.AreEqual(1, io.Outputs.Count);

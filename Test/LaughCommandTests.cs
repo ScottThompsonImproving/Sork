@@ -1,4 +1,4 @@
-﻿using Sork.Commands;
+﻿    using Sork.Commands;
 using Sork.World;
 
 namespace Sork.Test;
@@ -31,10 +31,14 @@ public sealed class LaughCommandTests
     public void Handles_ShouldReturnTrue_WhenCapitalizedInputIsProvided()
     {
         // Arrange
-        var command = new LaughCommand(new TestInputOutput());
+        var io = new TestInputOutput();
+        var command = new LaughCommand(io);
+        var gameState = GameState.Create();
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Handles("LOL");
+        var result = command.Handles("LOL", tester);
+
 
         // Assert
         Assert.IsTrue(result);
@@ -44,10 +48,14 @@ public sealed class LaughCommandTests
     public void Handles_ShouldReturnTrue_WhenLowercaseInputIsProvided()
     {
         // Arrange
-        var command = new LaughCommand(new TestInputOutput());
+        var io = new TestInputOutput();
+        var command = new LaughCommand(io);
+        var gameState = GameState.Create();
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
+
 
         // Act
-        var result = command.Handles("lol");
+        var result = command.Handles("lol", tester);
 
         // Assert
         Assert.IsTrue(result);

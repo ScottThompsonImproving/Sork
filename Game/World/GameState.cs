@@ -16,8 +16,20 @@ public class GameState
         tavern.Inventory.Add(mug);
         tavern.Inventory.Add(sword);
 
-        tavern.Exits.Add("down", dungeon);
-        dungeon.Exits.Add("up", tavern);
+        tavern.Exits.Add(new Exit
+        {
+            Name = "Dungeon",
+            Destination = dungeon,
+            Aliases = { "d", "down", "do", "downstairs" },
+            Description = "Those creepy kinda stairs that beckon but cause you pause."
+        });
+        dungeon.Exits.Add(new Exit
+        {
+            Name = "Tavern Door",
+            Destination = tavern,
+            Aliases = { "u", "up", "do", "upstairs" },
+            Description = "A sturdy wooden door with a brass knocker."
+        });
 
         return new GameState { RootRoom = tavern };
     }
