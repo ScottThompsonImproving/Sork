@@ -11,7 +11,7 @@ public class DanceCommand : BaseCommand
         this.io = io;
     }
 
-    public override bool Handles(string userInput)
+    public override bool Handles(string userInput, Player player)
     {
         var paramsLength = GetParametersFromInput(userInput).Length;
         return GetCommandFromInput(userInput) == "dance" && (paramsLength == 0 || paramsLength == 1);
@@ -27,6 +27,8 @@ public class DanceCommand : BaseCommand
             io.WriteMessageLine(" spin around in circles!");
 
             io.SpeakMessageLine("", player.Location);
+            io.SpeakNoun(player.Name, player.Location);
+            io.SpeakMessageLine(" spins around in circles!", player.Location);
             io.SpeakPrompt(" > ", player.Location);
         }
         else
@@ -37,6 +39,10 @@ public class DanceCommand : BaseCommand
             io.WriteMessageLine("!");
 
             io.SpeakMessageLine("", player.Location);
+            io.SpeakNoun(player.Name, player.Location);
+            io.SpeakMessage(" spins around in circles with ", player.Location);
+            io.SpeakNoun(parameters[0], player.Location);
+            io.SpeakMessageLine("!", player.Location);
             io.SpeakPrompt(" > ", player.Location);
         }
         return new CommandResult { RequestExit = false, IsHandled = true };

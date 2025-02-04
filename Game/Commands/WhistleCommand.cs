@@ -10,7 +10,7 @@ public class WhistleCommand : BaseCommand
     {
         this.io = io;
     }
-    public override bool Handles(string userInput)
+    public override bool Handles(string userInput, Player player)
     {
         return GetCommandFromInput(userInput) == "whistle";
     }
@@ -18,6 +18,10 @@ public class WhistleCommand : BaseCommand
     {
         io.WriteNoun("You");
         io.WriteMessageLine(" sound like a boiling tea kettle!");
+
+        io.SpeakMessageLine("", player.Location);
+        io.SpeakNoun(player.Name, player.Location);
+        io.SpeakMessageLine(" sounds like a boiling tea kettle!", player.Location);
         return new CommandResult { RequestExit = false, IsHandled = true };
     }
 }

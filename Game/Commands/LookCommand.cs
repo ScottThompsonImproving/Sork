@@ -10,7 +10,7 @@ public class LookCommand : BaseCommand
         this.io = io;
     }
 
-    public override bool Handles(string userInput)
+    public override bool Handles(string userInput, Player player)
     {
         return GetCommandFromInput(userInput) == "look";
     }
@@ -28,7 +28,7 @@ public class LookCommand : BaseCommand
             io.WriteMessageLine("");
             foreach (var exit in player.Location.Exits)
             {
-                io.WriteMessageLine($"{exit.Key} - {exit.Value.Description}");
+                io.WriteMessageLine($"{exit.Name} - {exit.Description}");
             }
         }
         else

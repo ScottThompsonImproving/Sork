@@ -11,7 +11,7 @@ public class LaughCommand : BaseCommand
         this.io = io;
     }
 
-    public override bool Handles(string userInput)
+    public override bool Handles(string userInput, Player player)
     {
         return GetCommandFromInput(userInput) == "lol";
     }
@@ -20,6 +20,10 @@ public class LaughCommand : BaseCommand
     {
         io.WriteNoun("You");
         io.WriteMessageLine(" laugh out loud!");
+
+        io.SpeakMessageLine("", player.Location);
+        io.SpeakNoun(player.Name, player.Location);
+        io.SpeakMessageLine(" laughs out loud!", player.Location);
         return new CommandResult { RequestExit = false, IsHandled = true };
     }
 }

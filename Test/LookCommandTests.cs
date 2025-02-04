@@ -10,10 +10,13 @@ public sealed class LookCommandTests
     public void Handle_ShouldReturnTrue_WhenInputIsCapitalized()
     {
         // Arrange
-        var command = new LookCommand(new TestInputOutput());
+        var io = new TestInputOutput();
+        var command = new LookCommand(io);
+        var gameState = GameState.Create();
+        var tester = new Player { Name = "TesterTheGreat", Location = gameState.RootRoom, Io = io };
 
         // Act
-        var result = command.Handles("LOOK");
+        var result = command.Handles("LOOK", tester);
 
         // Assert
         Assert.IsTrue(result);
@@ -42,7 +45,7 @@ public sealed class LookCommandTests
         Assert.AreEqual("", io.Outputs[3]);
         Assert.AreEqual("Exits", io.Outputs[4]);
         Assert.AreEqual("", io.Outputs[5]);
-        Assert.AreEqual("down - A dark, dank crypt that is filled with silence and dread.", io.Outputs[6]);
+        Assert.AreEqual("Dungeon - Those creepy kinda stairs that beckon but cause you pause.", io.Outputs[6]);
         Assert.AreEqual("", io.Outputs[7]);
         Assert.AreEqual("Inventory", io.Outputs[8]);
         Assert.AreEqual("", io.Outputs[9]);
